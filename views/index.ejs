@@ -222,5 +222,13 @@
         <script src="/Js/logIn.js"></script>
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
+        <script>
+            // Detectar el parámetro "registro" en la URL
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("registro") === "exitoso") {
+                // Mostrar una ventana emergente
+                alert("Usuario registrado correctamente");
+            }
+        </script>
     </body>
 </html>

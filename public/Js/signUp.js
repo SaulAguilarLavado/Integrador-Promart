@@ -28,7 +28,8 @@ router.post("/validar", function (req, res) {
             }
 
             console.log("Usuario registrado:", nombre_usuario);
-            res.status(201).send("Usuario registrado exitosamente");
+            // Redirige al index con un parámetro de consulta
+            res.redirect("/?registro=exitoso");
         });
     });
 });
