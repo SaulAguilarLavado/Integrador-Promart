@@ -1,0 +1,94 @@
+/* Fondo oscuro cuando aparece el formulario */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;  /* Estará oculto por defecto */
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 999;
+}
+
+/* Mostrar el fondo oscuro cuando se activa */
+.overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Estilo base para formularios */
+.form-container {
+    background-color: #fff;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: visibility 0.3s, opacity 0.3s;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1000;
+}
+
+/* Mostrar formulario cuando se activa */
+.form-container.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.form-container h2 {
+    margin-top: 0;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#loginForm button:hover {
+    background-color: red;
+}
+
+.form-container p {
+    margin-top: 10px;
+    text-align: center;
+    color: black;
+}
+
+#userAccount {
+    cursor: pointer;
+    color: white;
+}
+
+/* Enlaces de cambio entre login y registro */
+#showRegisterForm,
+#showLoginForm {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+}

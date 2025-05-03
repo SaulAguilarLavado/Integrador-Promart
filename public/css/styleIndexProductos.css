@@ -1,0 +1,207 @@
+/* ********************************** */
+/*             PRODUCTOS              */
+/* ********************************** */
+.contenedor-catalogo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background-color: #999999;
+    padding: 0 2rem; /* Espaciado lateral para que las cajas no toquen los bordes */
+}
+
+.contenedor-catalogo h1 {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 2rem; /* Ajustamos el tamaño de la cabecera */
+}
+
+#Ver-mas {
+    font-family: "Agdasima", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.contenedor-categorias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; /* Espacio entre las cajas de las categorías */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.categoria:nth-child(10) {
+    grid-column: 2 / 3;
+}
+
+.categoria {
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    gap: 2rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+    background-size: cover; /* Ajustamos para cubrir completamente el fondo */
+    background-position: center; /* Centrado completo */
+}
+
+.categoria:hover {
+    transform: scale(1.05);
+    background-color: #ff3300;
+}
+
+.audio {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Audio.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.celulares {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Celulares.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.gamer {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Gamer.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.computo {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Computo.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.smart-home {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Smart-Home.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.movilidad {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Movilidad.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.camaras {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Fotografia.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tv-video {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Tv.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.oficina {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Oficina.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pilas-cargadores {
+    background-image: linear-gradient(#00000080, #00000080),
+        url('/img/general-index-img/Pilas.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.categoria p {
+    font-size: 2rem; /* Reducimos el tamaño inicial del texto */
+    color: #fff;
+    text-transform: capitalize;
+    position: relative;
+    text-align: center; 
+    transition: color 0.3s ease; 
+}
+
+.categoria p::after {
+    content: '';
+    width: 2.5rem;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.categoria span {
+    font-size: 1.6rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Agregamos transición para el color */
+}
+
+.categoria span:hover {
+    color: #ff3300; 
+}
+
+.categoria:hover p {
+    color: #ff3300; 
+}
+
+/* responsive*/
+@media (max-width: 768px) {
+    .contenedor-categorias {
+        grid-template-columns: repeat(2, 1fr); /* Cambio a 2 columnas */
+    }
+
+    .categoria {
+        height: 15rem; /* Ajuste de tamaño */
+    }
+    
+    /* Reduccion del tamaño del texto */
+    .categoria p {
+        font-size: 1.5rem; 
+    }
+
+    .categoria span {
+        font-size: 1.2rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-categorias {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+
+    .categoria {
+        height: 12rem;
+    }
+
+    .categoria p {
+        font-size: 1.2rem;
+    }
+
+    .categoria span {
+        font-size: 1rem;
+    }
+}
