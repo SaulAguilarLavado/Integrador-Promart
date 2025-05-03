@@ -1,6 +1,6 @@
-const app = require("./server.js");
+const app = require("./conexionAndServer");
 const bcrypt = require('bcryptjs');
-const conexion = require("./conexion");
+const conexion = require("./conexionAndServer");
 
 
 //VALIDAR INICIO DE SESION
