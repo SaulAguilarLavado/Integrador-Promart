@@ -41,5 +41,17 @@ document.addEventListener("DOMContentLoaded", function() {
     showLoginForm.addEventListener('click', showLogin);
 });
 
+// Detectar el parámetro "login" en la URL
+const params = new URLSearchParams(window.location.search);
+if (params.get("login") === "exitoso") {
+    // Mostrar una ventana emergente
+    alert("Inicio de sesión exitoso. ¡Bienvenido!");
 
+    // Eliminar el parámetro de la URL sin recargar la página
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
 
+function logout() {
+    window.location.href = "/logout";
+    return false; // Evita el comportamiento predeterminado del enlace
+}
