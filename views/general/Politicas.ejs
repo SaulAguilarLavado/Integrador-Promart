@@ -5,14 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Promart</title>
         <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/styleIndexProductos.css">
-        <link rel="stylesheet" href="/css/login.css">
-        <link rel="stylesheet" href="/css/logOutButton.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styleSecu.css">
+        <link rel="stylesheet" href="/css/login.css"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Agdasima&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
     </head>
+    <body>
+        <!-- Cabezera -->
         <header>
             <div class="contenedor-principal">
                 <div class="contenedor principal">
@@ -83,12 +84,7 @@
                                 <p>¿Ya tienes cuenta? <a href="#" id="showLoginForm">Iniciar Sesión</a></p>
                             </section>
     
-                            <span id="userAccount">
-                                <%= userName || "Mi Cuenta" %>
-                            </span>
-                            <% if (userName) { %>
-                                <a href="/logout" id="logoutButton" class="logout-button" onclick="return logout()">Cerrar Sesión</a>
-                            <% } %>
+                            <span id="userAccount"><%=userName||"Mi Cuenta"%></span>
                         </div>
                         <div class="carrito" style="text-decoration: none;">
                             <a href="../busqueda-producto/carrito.html">
@@ -121,69 +117,59 @@
                 </div>
             </div>    
         </header>
-    </body>
+
         <div class="overlay" id="overlay"></div>
 
-        <section class="contenedor-catalogo">
-            <h1>Nuestro Catalogo</h1>
-            <div class="contenedor-categorias">
-                <div class="categoria audio">
-                    <p>Audio</p>
-                    <a href="../busqueda-producto/audioProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria celulares">
-                    <p>Celulares y Accesorios</p>
-                    <a href="../busqueda-producto/celularesProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria gamer">
-                    <p>Gamer</p>
-                    <a href="../busqueda-producto/gamerProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria computo">
-                    <p>Computo</p>
-                    <a href="../busqueda-producto/computoProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria smart-home">
-                    <p>Smart Home</p>
-                    <a href="../busqueda-producto/smartHomeProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria camaras">
-                    <p>Camaras y Drones</p>
-                    <a href="../busqueda-producto/camarasDronesProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria tv-video">
-                    <p>Tv y Video</p>
-                    <a href="../busqueda-producto/TVProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria oficina">
-                    <p>Oficina</p>
-                    <a href="../busqueda-producto/oficinaProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria pilas-cargadores">
-                    <p>Pilas y Cargadores</p>
-                    <a href="../busqueda-producto/pilasProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
+        <section class="Descripcion">
+            <h2>Política de Privacidad</h2>
+            <p>
+                Promart protege tus datos personales utilizando certificados de seguridad SSL VTEX, asegurando que toda la información transmitida a través de su sitio web esté cifrada y segura. Esto incluye datos sensibles como números de tarjetas de crédito y contraseñas. El protocolo SSL (Secure Socket Layer) es un estándar en la industria para garantizar la seguridad de las transacciones en línea.
+            </p>
+        
+            <h3>1. Recopilación de datos personales</h3>
+            <p>Promart puede recolectar información como:</p>
+            <ul>
+                <li>Nombres completos</li>
+                <li>DNI o RUC</li>
+                <li>Dirección de entrega y de facturación</li>
+                <li>Número de teléfono y correo electrónico</li>
+                <li>Información de pago (bajo estándares de seguridad)</li>
+            </ul>
+            
+            <h3>2. Uso de la información</h3>
+            <p>Los datos personales se utilizan para:</p>
+            <ul>
+                <li>Procesar pedidos y gestionar entregas</li>
+                <li>Atender consultas y brindar soporte postventa</li>
+                <li>Informar sobre promociones, campañas y novedades (previo consentimiento)</li>
+                <li>Evaluar la calidad del servicio</li>
+                <li>Fines estadísticos o de mejora de experiencia</li>
+            </ul>
+            
+            <h3>3. Medidas de seguridad</h3>
+            <p>Promart emplea protocolos de seguridad SSL (Secure Socket Layer) provistos por VTEX para cifrar la información sensible. Esto protege datos como contraseñas y números de tarjetas de crédito durante su transmisión.</p>
+            
+            <h3>4. Compartición con terceros</h3>
+            <p>Promart puede compartir información con terceros (proveedores logísticos, financieros, entre otros), exclusivamente para ejecutar los servicios contratados. No comercializa ni transfiere datos personales sin consentimiento expreso, salvo obligación legal.</p>
+            
+            <h3>5. Derechos del titular de datos</h3>
+            <p>Los usuarios pueden ejercer sus derechos de:</p>
+            <ul>
+                <li>Acceder a sus datos</li>
+                <li>Rectificar información incorrecta</li>
+                <li>Cancelar su uso (eliminación)</li>
+                <li>Oponerse al tratamiento para ciertos fines (derechos ARCO)</li>
+            </ul>
+            <p>Esto se realiza mediante solicitudes formales a través de canales designados por Promart.</p>
+            
+            <h3>6. Tiempo de conservación</h3>
+            <p>Los datos personales serán almacenados solo por el tiempo necesario para cumplir las finalidades mencionadas o exigencias legales.</p>
+            
+            <h3>7. Actualización de la política</h3>
+            <p>Promart se reserva el derecho de modificar sus políticas de privacidad en cualquier momento. Cualquier cambio será comunicado oportunamente en su sitio web.</p>
 
-            </div>
         </section>
+        
 
         <footer class="footer">
             <div class="contenedor-footer">
@@ -223,20 +209,12 @@
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
         <script>
-            // Detectar el parámetro "login" en la URL
+            // Detectar el parámetro "registro" en la URL
             const params = new URLSearchParams(window.location.search);
-            if (params.get("login") === "exitoso") {
+            if (params.get("registro") === "exitoso") {
                 // Mostrar una ventana emergente
-                alert("Inicio de sesión exitoso. ¡Bienvenido!");
-        
-                // Eliminar el parámetro de la URL sin recargar la página
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        
-            function logout() {
-                window.location.href = "/logout";
-                return false; // Evita el comportamiento predeterminado del enlace
+                alert("Usuario registrado correctamente");
             }
         </script>
     </body>
-</html>
+</html>  

@@ -5,14 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Promart</title>
         <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/styleIndexProductos.css">
-        <link rel="stylesheet" href="/css/login.css">
-        <link rel="stylesheet" href="/css/logOutButton.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styleSecu.css">
+        <link rel="stylesheet" href="/css/login.css"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Agdasima&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
     </head>
+    <body>
+        <!-- Cabezera -->
         <header>
             <div class="contenedor-principal">
                 <div class="contenedor principal">
@@ -83,12 +84,7 @@
                                 <p>¿Ya tienes cuenta? <a href="#" id="showLoginForm">Iniciar Sesión</a></p>
                             </section>
     
-                            <span id="userAccount">
-                                <%= userName || "Mi Cuenta" %>
-                            </span>
-                            <% if (userName) { %>
-                                <a href="/logout" id="logoutButton" class="logout-button" onclick="return logout()">Cerrar Sesión</a>
-                            <% } %>
+                            <span id="userAccount"><%=userName||"Mi Cuenta"%></span>
                         </div>
                         <div class="carrito" style="text-decoration: none;">
                             <a href="../busqueda-producto/carrito.html">
@@ -121,71 +117,32 @@
                 </div>
             </div>    
         </header>
-    </body>
+
         <div class="overlay" id="overlay"></div>
 
-        <section class="contenedor-catalogo">
-            <h1>Nuestro Catalogo</h1>
-            <div class="contenedor-categorias">
-                <div class="categoria audio">
-                    <p>Audio</p>
-                    <a href="../busqueda-producto/audioProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria celulares">
-                    <p>Celulares y Accesorios</p>
-                    <a href="../busqueda-producto/celularesProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria gamer">
-                    <p>Gamer</p>
-                    <a href="../busqueda-producto/gamerProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria computo">
-                    <p>Computo</p>
-                    <a href="../busqueda-producto/computoProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria smart-home">
-                    <p>Smart Home</p>
-                    <a href="../busqueda-producto/smartHomeProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria camaras">
-                    <p>Camaras y Drones</p>
-                    <a href="../busqueda-producto/camarasDronesProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria tv-video">
-                    <p>Tv y Video</p>
-                    <a href="../busqueda-producto/TVProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria oficina">
-                    <p>Oficina</p>
-                    <a href="../busqueda-producto/oficinaProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria pilas-cargadores">
-                    <p>Pilas y Cargadores</p>
-                    <a href="../busqueda-producto/pilasProductos.html">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-
-            </div>
+        <section class="contenedor-formulario">
+            <form action="#" method="post" class="formulario-sugerencias">
+                <h2>Formulario de Sugerencias</h2>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="categoria">Categoría de la Sugerencia:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="" disabled selected>Selecciona una categoría</option>
+                    <option value="producto">Producto</option>
+                    <option value="servicio">Servicio</option>
+                    <option value="soporte">Soporte Técnico</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <label for="sugerencia">Sugerencia:</label>
+                <textarea id="sugerencia" name="sugerencia" rows="4" required></textarea>
+                <button type="submit">Enviar Sugerencia</button>
+            </form>
         </section>
 
-        <footer class="footer">
+
+       <footer class="footer">
             <div class="contenedor-footer">
                 <div class="menu-footer">
                     <div class="contacto">
@@ -211,6 +168,7 @@
                             <li><a href="/reclamaciones">Reclamaciones</a></li>
                         </ul>
                     </div>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -223,20 +181,12 @@
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
         <script>
-            // Detectar el parámetro "login" en la URL
+            // Detectar el parámetro "registro" en la URL
             const params = new URLSearchParams(window.location.search);
-            if (params.get("login") === "exitoso") {
+            if (params.get("registro") === "exitoso") {
                 // Mostrar una ventana emergente
-                alert("Inicio de sesión exitoso. ¡Bienvenido!");
-        
-                // Eliminar el parámetro de la URL sin recargar la página
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        
-            function logout() {
-                window.location.href = "/logout";
-                return false; // Evita el comportamiento predeterminado del enlace
+                alert("Usuario registrado correctamente");
             }
         </script>
     </body>
-</html>
+</html>  

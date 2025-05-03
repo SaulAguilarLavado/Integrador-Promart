@@ -31,9 +31,9 @@ router.post("/login", function (req, res) {
             }
 
             if (result) {
-                req.session.userName = rows[0].nombre_usuario;
+                req.session.userName = rows[0].nombre_usuario; // Almacena el nombre del usuario en la sesión
                 console.log("Inicio de sesión exitoso para:", rows[0].nombre_usuario);
-                res.redirect("/");
+                res.redirect("/?login=exitoso"); // Redirige con un parámetro de consulta
             } else {
                 res.status(401).send("Contraseña incorrecta");
             }

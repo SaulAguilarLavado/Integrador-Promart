@@ -28,8 +28,41 @@ app.use(signUpRoutes); // Rutas de registro
 app.get("/", function(req, res) {
     const userName = req.session?.userName || "Mi Cuenta"; // Obtén el nombre del usuario desde la sesión o usa un valor predeterminado
     res.render("index", { userName }); // Pasa la variable userName a la vista
-  });
+});
+app.get("/acerca", (req, res) => {
+    const userName = req.session?.userName || "Mi Cuenta"; // Obtén el nombre del usuario o usa un valor predeterminado
+    res.render("general/Acerca", { userName }); // Pasa la variable userName a la vista
+});
+app.get("/politicas", (req, res) => {
+    const userName = req.session?.userName || "Mi Cuenta";
+    res.render("general/Politicas", { userName });
+});
 
+app.get("/terminos", (req, res) => {
+    const userName = req.session?.userName || "Mi Cuenta";
+    res.render("general/Terminos", { userName });
+});
+
+app.get("/sugerencias", (req, res) => {
+    const userName = req.session?.userName || "Mi Cuenta";
+    res.render("general/Sugerencias", { userName });
+});
+
+app.get("/reclamaciones", (req, res) => {
+    const userName = req.session?.userName || "Mi Cuenta";
+    res.render("general/Reclamaciones", { userName });
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error al cerrar sesión:", err);
+            return res.status(500).send("Error al cerrar sesión");
+        }
+        res.redirect("/"); // Redirige al inicio después de cerrar sesión
+    });
+});
+// Ruta Servidor
 app.listen(3000, () => {
     console.log("Server is running on port http://localhost:3000");
 });
