@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const conexion = require("./db"); // Importa la conexión directamente
+const conexion = require("../DB/db"); // Importa la conexión directamente
 
 const router = express.Router();
 

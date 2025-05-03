@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const app = express();
-const conexion = require("./db"); // Importa la conexión desde el archivo db.js
+const conexion = require("../DB/db"); // Importa la conexión desde el archivo db.js
 
 // Importar las rutas
 const logInRoutes = require("./logIn");
