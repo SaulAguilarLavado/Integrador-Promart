@@ -4,8 +4,8 @@ const app = express();
 const conexion = require("../DB/db"); // Importa la conexión desde el archivo db.js
 
 // Importar las rutas
-const logInRoutes = require("./logIn");
-const signUpRoutes = require("./signUp");
+const logInRoutes = require("../Js/logIn");
+const signUpRoutes = require("../Js/signUp");
 
 //CONFIGURAR EL MOTOR DE VISTAS
 app.set("view engine", "ejs");
