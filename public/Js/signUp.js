@@ -1,41 +1,36 @@
-const app = require("./conexionAndServer");
-const bcrypt = require('bcryptjs');
-const conexion = require("./conexionAndServer");
-//VALIDAR REGISTRO DE USUARIOS
-app.post("/validar", function(req, res) {
-    const datos = req.body;
-    let nombre_usuario = datos.nombre_usuario;
-    let correo = datos.correo;
-    let contra = datos.contra;
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const conexion = require("./db"); // Importa la conexión directamente
 
-    // Verificar si el correo ya existe en la base de datos
-    let buscarCorreo = "SELECT * FROM usuarios WHERE correo = ?";
-    conexion.query(buscarCorreo, [correo], function(err, rows) {
+const router = express.Router();
+
+// REGISTRAR USUARIO
+router.post("/validar", function (req, res) {
+    const { nombre_usuario, correo, contra } = req.body;
+
+    console.log("Datos recibidos:", { nombre_usuario, correo, contra }); // Verifica los datos recibidos
+
+    if (!nombre_usuario || !correo || !contra) {
+        return res.status(400).send("Todos los campos son obligatorios");
+    }
+
+    bcrypt.hash(contra, 10, function (err, hash) {
         if (err) {
-            console.error("Error en la consulta:", err);
+            console.error("Error al encriptar la contraseña:", err);
             return res.status(500).send("Error en el servidor");
-        } else if (rows.length > 0) {
-            // El correo ya está registrado
-            res.status(409).send("El correo ya está registrado");
-        } else {
-            // Si no existe, ciframos la contraseña
-            bcrypt.hash(contra, 10, function(err, hash) {
-                if (err) {
-                    console.error("Error al cifrar la contraseña:", err);
-                    return res.status(500).send("Error al registrar usuario");
-                }
-
-                // Insertamos el nuevo usuario con la contraseña cifrada
-                let registrar = "INSERT INTO usuarios (nombre_usuario, correo, contra) VALUES (?, ?, ?)";
-                conexion.query(registrar, [nombre_usuario, correo, hash], function(err) {
-                    if (err) {
-                        console.error("Error al insertar los datos:", err);
-                        return res.status(500).send("Error al registrar usuario");
-                    } else {
-                        res.status(200).send("Usuario registrado correctamente");
-                    }
-                });
-            });
         }
+
+        const insertarUsuario = "INSERT INTO usuarios (nombre_usuario, correo, contra) VALUES (?, ?, ?)";
+        conexion.query(insertarUsuario, [nombre_usuario, correo, hash], function (err, result) {
+            if (err) {
+                console.error("Error al registrar el usuario:", err);
+                return res.status(500).send("Error en el servidor");
+            }
+
+            console.log("Usuario registrado:", nombre_usuario);
+            res.status(201).send("Usuario registrado exitosamente");
+        });
     });
 });
+
+module.exports = router;
