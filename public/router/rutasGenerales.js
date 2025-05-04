@@ -23,12 +23,12 @@ router.get("/terminos", (req, res) => {
 });
 
 router.get("/sugerencias", (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
+    const userName = req.session?.userName || null; // Si no hay sesión, será null
     res.render("general/Sugerencias", { userName });
 });
 
 router.get("/reclamaciones", (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
+    const userName = req.session?.userName || null; // Obtén el nombre del usuario si está en sesión
     res.render("general/Reclamaciones", { userName });
 });
 

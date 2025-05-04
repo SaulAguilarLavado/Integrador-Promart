@@ -31,7 +31,9 @@ router.post("/login", function (req, res) {
             }
 
             if (result) {
-                req.session.userName = rows[0].nombre_usuario;
+                req.session.userId = rows[0].id; // Guarda el id del usuario en la sesión
+                req.session.userName = rows[0].nombre_usuario; // Guarda el nombre del usuario en la sesión
+                req.session.userEmail = rows[0].correo; // Guarda el correo del usuario en la sesión
                 res.redirect("/?login=exitoso");
             } else {
                 res.status(401).send("Contraseña incorrecta");

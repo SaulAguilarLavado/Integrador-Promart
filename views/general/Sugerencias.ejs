@@ -83,8 +83,12 @@
                                 <div class="message" id="registerMessage"></div>
                                 <p>¿Ya tienes cuenta? <a href="#" id="showLoginForm">Iniciar Sesión</a></p>
                             </section>
-    
-                            <span id="userAccount"><%=userName||"Mi Cuenta"%></span>
+                            <span id="userAccount">
+                                <%=userName||"Mi Cuenta"%>
+                            </span>
+                            <% if (userName) { %>
+                                <a href="/logout" id="logoutButton" class="logout-button">Cerrar Sesión</a>
+                            <% } %>
                         </div>
                         <div class="carrito" style="text-decoration: none;">
                             <a href="../busqueda-producto/carrito.html">
@@ -121,13 +125,15 @@
         <div class="overlay" id="overlay"></div>
 
         <section class="contenedor-formulario">
-            <form action="/sugerencias" method="post" class="formulario-sugerencias">
-                <h2>Formulario de Sugerencias</h2>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="categoria">Categoría de la Sugerencia:</label>
+            <form action="/reclamaciones" method="post" class="formulario-reclamaciones">
+                <h2>Formulario de Reclamaciones</h2>
+                <% if (!userName) { %>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="dni">DNI:</label>
+                    <input type="text" id="dni" name="dni" required>
+                <% } %>
+                <label for="categoria">Categoría de la Reclamación:</label>
                 <select id="categoria" name="categoria" required>
                     <option value="" disabled selected>Selecciona una categoría</option>
                     <option value="producto">Producto</option>
@@ -135,9 +141,9 @@
                     <option value="soporte">Soporte Técnico</option>
                     <option value="otro">Otro</option>
                 </select>
-                <label for="sugerencia">Sugerencia:</label>
-                <textarea id="sugerencia" name="sugerencia" rows="4" required></textarea>
-                <button type="submit">Enviar Sugerencia</button>
+                <label for="reclamacion">Reclamación:</label>
+                <textarea id="reclamacion" name="reclamacion" rows="4" required></textarea>
+                <button type="submit">Enviar Reclamación</button>
             </form>
         </section>
 
