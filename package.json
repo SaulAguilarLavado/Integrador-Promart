@@ -4,7 +4,8 @@
   "main": "index.ejs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon public/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
