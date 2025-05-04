@@ -1,7 +1,8 @@
 import express from "express";
 import session from "express-session";
 
-import sugerenciasReclamacionesRoutes from "../router/sugerenciasReclamacionesRouter.js";
+import sugerencias from "../router/sugerencias.js";
+import reclamaciones from "../router/reclamaciones.js";
 import logInRoutes from "../router/logInRouter.js";
 import signUpRoutes from "../router/signUpRouter.js";
 import generalRouter from "../router/generalRouter.js";
@@ -24,7 +25,8 @@ app.use(session({
 }));
 
 // Registrar las rutas
-app.use(sugerenciasReclamacionesRoutes);
+app.use(sugerencias);
+app.use(reclamaciones);
 app.use(logInRoutes);
 app.use(signUpRoutes);
 app.use(generalRouter);
