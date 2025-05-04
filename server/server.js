@@ -1,10 +1,10 @@
 import express from "express";
 import session from "express-session";
 
-import sugerenciasReclamacionesRoutes from "../router/sugerenciasReclamaciones.js";
-import logInRoutes from "../router/logIn.js";
-import signUpRoutes from "../router/signUp.js";
-import rutasGenerales from "../router/rutasGenerales.js";
+import sugerenciasReclamacionesRoutes from "../router/sugerenciasReclamacionesRouter.js";
+import logInRoutes from "../router/logInRouter.js";
+import signUpRoutes from "../router/signUpRouter.js";
+import generalRouter from "../router/generalRouter.js";
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(session({
 app.use(sugerenciasReclamacionesRoutes);
 app.use(logInRoutes);
 app.use(signUpRoutes);
-app.use(rutasGenerales);
+app.use(generalRouter);
 
 // Iniciar el servidor
 app.listen(3000, () => {
