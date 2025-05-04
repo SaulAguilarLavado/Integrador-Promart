@@ -160,19 +160,20 @@ a {
     justify-content: center; /* Centra los elementos verticalmente */
     text-align: center; /* Asegura que el texto esté alineado correctamente */
     gap: 0.5rem; /* Espacio entre el SVG y el texto */
-    color: white;
     text-decoration: none;
 }
 
 .carrito svg {
     width: 40px; /* Ajusta el tamaño del ícono SVG */
     height: 40px;
+    color: white;
     text-decoration: none;
 }
 
 .carrito span {
     font-size: 1.2rem; /* Tamaño de la fuente */
     font-weight: 500; /* Grosor de la fuente */
+    color: white;
     text-decoration: none;
 }
 
