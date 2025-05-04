@@ -121,7 +121,7 @@
         <div class="overlay" id="overlay"></div>
 
         <section class="contenedor-formulario">
-            <form action="#" method="post" class="formulario-sugerencias">
+            <form action="/sugerencias" method="post" class="formulario-sugerencias">
                 <h2>Formulario de Sugerencias</h2>
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -185,8 +185,11 @@
             const params = new URLSearchParams(window.location.search);
             if (params.get("registro") === "exitoso") {
                 // Mostrar una ventana emergente
-                alert("Usuario registrado correctamente");
+                alert("Reclamación enviada correctamente. ¡Gracias por tu aporte!");
             }
+        
+            // Eliminar el parámetro de la URL sin recargar la página
+            window.history.replaceState({}, document.title, window.location.pathname);
         </script>
     </body>
 </html>  

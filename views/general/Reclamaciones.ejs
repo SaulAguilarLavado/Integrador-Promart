@@ -121,7 +121,7 @@
         <div class="overlay" id="overlay"></div>
 
         <section class="contenedor-formulario">
-            <form action="#" method="post" class="formulario-reclamaciones">
+            <form action="/reclamaciones" method="post" class="formulario-reclamaciones">
                 <h2>Formulario de Reclamaciones</h2>
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -135,7 +135,7 @@
                     <option value="soporte">Soporte Técnico</option>
                     <option value="otro">Otro</option>
                 </select>
-                <label for="reclamacion">Descripción de la Reclamación:</label>
+                <label for="reclamacion">Reclamación:</label>
                 <textarea id="reclamacion" name="reclamacion" rows="4" required></textarea>
                 <button type="submit">Enviar Reclamación</button>
             </form>
@@ -184,8 +184,11 @@
             const params = new URLSearchParams(window.location.search);
             if (params.get("registro") === "exitoso") {
                 // Mostrar una ventana emergente
-                alert("Usuario registrado correctamente");
+                alert("Reclamación enviada correctamente. ¡Gracias por tu aporte!");
             }
+        
+            // Eliminar el parámetro de la URL sin recargar la página
+            window.history.replaceState({}, document.title, window.location.pathname);
         </script>
     </body>
 </html>  
