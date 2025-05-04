@@ -50,6 +50,12 @@ if (params.get("login") === "exitoso") {
     // Eliminar el parámetro de la URL sin recargar la página
     window.history.replaceState({}, document.title, window.location.pathname);
 }
+// Manejar registro exitoso
+if (params.get("registro") === "exitoso") {
+    alert("Registro exitoso. ¡Bienvenido a Promart!");
+    // Eliminar el parámetro de la URL sin recargar la página
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
 
 function logout() {
     window.location.href = "/logout";
