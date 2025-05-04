@@ -17,8 +17,7 @@ router.post("/sugerencias", (req, res) => {
     const emailFinal = id_usuario ? req.session.userEmail : email;
 
     const insertarSugerencia = `
-        INSERT INTO sugerencias (id_usuario, nombre, email, categoria, sugerencia)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO sugerencias (id_usuario, nombre, email, categoria, sugerencia) VALUES (?, ?, ?, ?, ?)
     `;
 
     conexion.query(insertarSugerencia, [id_usuario, nombreFinal, emailFinal, categoria, sugerencia], (err, result) => {
@@ -46,8 +45,7 @@ router.post("/reclamaciones", (req, res) => {
     }
 
     const insertarReclamacion = `
-        INSERT INTO reclamaciones (id_usuario, nombre, dni, categoria, reclamacion)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO reclamaciones (id_usuario, nombre, dni, categoria, reclamacion) VALUES (?, ?, ?, ?, ?)
     `;
 
     conexion.query(insertarReclamacion, [id_usuario, nombreFinal, dniFinal, categoria, reclamacion], (err, result) => {
