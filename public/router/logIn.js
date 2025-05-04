@@ -1,6 +1,6 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const conexion = require("../DB/db"); // Importa la conexión directamente
+import express from "express";
+import bcrypt from "bcryptjs";
+import conexion from "../DB/db.js";
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.post("/login", function (req, res) {
     }
 
     const buscarLogin = "SELECT * FROM usuarios WHERE correo = ?";
-    conexion.query(buscarLogin, [correo], function (err, rows) {
+    conexion.query(buscarLogin, [correo], (err, rows) => {
         if (err) {
             console.error("Error en la consulta:", err);
             return res.status(500).send("Error en el servidor");
@@ -24,16 +24,15 @@ router.post("/login", function (req, res) {
             return res.status(404).send("Usuario no encontrado");
         }
 
-        bcrypt.compare(contra, rows[0].contra, function (err, result) {
+        bcrypt.compare(contra, rows[0].contra, (err, result) => {
             if (err) {
                 console.error("Error al comparar contraseñas:", err);
                 return res.status(500).send("Error en el servidor");
             }
 
             if (result) {
-                req.session.userName = rows[0].nombre_usuario; // Almacena el nombre del usuario en la sesión
-                console.log("Inicio de sesión exitoso para:", rows[0].nombre_usuario);
-                res.redirect("/?login=exitoso"); // Redirige con un parámetro de consulta
+                req.session.userName = rows[0].nombre_usuario;
+                res.redirect("/?login=exitoso");
             } else {
                 res.status(401).send("Contraseña incorrecta");
             }
@@ -41,4 +40,4 @@ router.post("/login", function (req, res) {
     });
 });
 
-module.exports = router;
+export default router;

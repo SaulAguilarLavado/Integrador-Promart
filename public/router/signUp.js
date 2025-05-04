@@ -1,6 +1,6 @@
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const conexion = require("../DB/db"); // Importa la conexión directamente
+import express from "express";
+import bcrypt from "bcryptjs";
+import conexion from "../DB/db.js";
 
 const router = express.Router();
 
@@ -34,4 +34,4 @@ router.post("/validar", function (req, res) {
     });
 });
 
-module.exports = router;
+export default router;

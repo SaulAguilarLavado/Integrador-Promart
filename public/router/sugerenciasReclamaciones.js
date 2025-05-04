@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import conexion from "../DB/db.js"; // Importa la conexión a la base de datos
+
 const router = express.Router();
-const conexion = require("../DB/db"); // Importa la conexión a la base de datos
 
 // Ruta para guardar sugerencias
 router.post("/sugerencias", (req, res) => {
@@ -42,4 +43,4 @@ router.post("/reclamaciones", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

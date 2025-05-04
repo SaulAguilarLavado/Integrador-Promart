@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
+
 const router = express.Router();
 
-// Rutas generales
 router.get("/", (req, res) => {
     const userName = req.session?.userName || "Mi Cuenta";
     res.render("index", { userName });
@@ -42,4 +42,4 @@ router.get("/logout", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

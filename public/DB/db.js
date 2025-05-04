@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+import mysql from "mysql";
 
 const conexion = mysql.createConnection({
     host: "localhost",
@@ -7,12 +7,12 @@ const conexion = mysql.createConnection({
     database: "Integrador"
 });
 
-conexion.connect(function (err) {
+conexion.connect((err) => {
     if (err) {
-        console.error("Error connecting to the database:", err.message);
+        console.error("Error al conectar a la base de datos:", err.message);
     } else {
-        console.log("Connected to the database");
+        console.log("Conexión a la base de datos exitosa");
     }
 });
 
-module.exports = conexion;
+export default conexion;

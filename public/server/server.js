@@ -1,34 +1,35 @@
-const express = require("express");
-const session = require("express-session");
+import express from "express";
+import session from "express-session";
+
+import sugerenciasReclamacionesRoutes from "../router/sugerenciasReclamaciones.js";
+import logInRoutes from "../router/logIn.js";
+import signUpRoutes from "../router/signUp.js";
+import rutasGenerales from "../router/rutasGenerales.js";
+
 const app = express();
 
-// Importar las rutas
-const conexion = require("../DB/db"); // Importa la conexión desde el archivo db.js
-const sugerenciasReclamacionesRoutes = require("../router/sugerenciasReclamaciones");
-const logInRoutes = require("../router/logIn");
-const signUpRoutes = require("../router/signUp");
-const rutasGenerales = require("../router/rutasGenerales");
-
-//CONFIGURAR EL MOTOR DE VISTAS
+// Configurar el motor de vistas
 app.set("view engine", "ejs");
 
-// Registrar las rutas
-app.use(express.static("public")); //archivos estaticos desde public
-app.use(express.json()); //peticiones json
-app.use(express.urlencoded({ extended: true })); // Para manejar formularios
-app.use(sugerenciasReclamacionesRoutes); // Rutas para sugerencias y reclamaciones
-app.use(logInRoutes); // Rutas de inicio de sesión
-app.use(signUpRoutes); // Rutas de registro
-app.use(rutasGenerales);
+// Registrar middlewares
+app.use(express.static("public")); // Archivos estáticos
+app.use(express.json()); // Peticiones JSON
+app.use(express.urlencoded({ extended: true })); // Formularios
 
 // Configurar express-session
 app.use(session({
-    secret: "clave_secreta", // Cambia esto por una clave secreta segura
+    secret: "clave_secreta", // Cambia esto por una clave segura
     resave: false,
     saveUninitialized: true
 }));
 
-// Ruta Servidor
+// Registrar las rutas
+app.use(sugerenciasReclamacionesRoutes);
+app.use(logInRoutes);
+app.use(signUpRoutes);
+app.use(rutasGenerales);
+
+// Iniciar el servidor
 app.listen(3000, () => {
     console.log("Server is running on port http://localhost:3000");
 });
