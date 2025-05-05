@@ -14,6 +14,18 @@ class ReclamacionesService {
             });
         });
     }
+
+    obtenerUsuarioPorId(id_usuario) {
+        return new Promise((resolve, reject) => {
+            const query = "SELECT dni FROM usuarios WHERE id = ?";
+            conexion.query(query, [id_usuario], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results[0]);
+            });
+        });
+    }
 }
 
 export default new ReclamacionesService();

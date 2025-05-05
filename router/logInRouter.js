@@ -21,6 +21,7 @@ router.post("/login", async (req, res) => {
         // Guardar datos del usuario en la sesión
         req.session.userId = user.id;
         req.session.userName = user.nombre_usuario;
+        req.session.userEmail = user.correo;
 
         res.redirect("/?login=exitoso");
     } catch (err) {
