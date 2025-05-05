@@ -24,7 +24,7 @@ router.post("/reclamaciones", async (req, res) => {
         // Guardar la reclamación
         await reclamacionesService.guardarReclamacion(id_usuario, nombreFinal, dniFinal, categoria, reclamacion);
         console.log("Reclamación guardada correctamente");
-        res.redirect("/reclamaciones?registro=exitoso");
+        res.redirect("/reclamaciones?reclamaciones=exitoso");
     } catch (err) {
         console.error("Error al guardar la reclamación:", err);
         res.status(500).send("Error al guardar la reclamación");
