@@ -1,45 +1,32 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import conexion from "../DB/db.js";
+import userService from "../service/userService.js";
 
 const router = express.Router();
 
-// VALIDAR INICIO DE SESIÓN
-router.post("/login", function (req, res) {
+router.post("/login", async (req, res) => {
     const { correo, contra } = req.body;
-    console.log("Datos recibidos:", { correo, contra });
 
-    if (!correo || !contra) {
-        return res.status(400).send("Correo y contraseña son obligatorios");
-    }
-
-    const buscarLogin = "SELECT * FROM usuarios WHERE correo = ?";
-    conexion.query(buscarLogin, [correo], (err, rows) => {
-        if (err) {
-            console.error("Error en la consulta:", err);
-            return res.status(500).send("Error en el servidor");
-        }
-
-        if (rows.length === 0) {
+    try {
+        const user = await userService.buscarUsuarioPorCorreo(correo);
+        if (!user) {
             return res.status(404).send("Usuario no encontrado");
         }
 
-        bcrypt.compare(contra, rows[0].contra, (err, result) => {
-            if (err) {
-                console.error("Error al comparar contraseñas:", err);
-                return res.status(500).send("Error en el servidor");
-            }
+        const isPasswordValid = await bcrypt.compare(contra, user.contra);
+        if (!isPasswordValid) {
+            return res.status(401).send("Contraseña incorrecta");
+        }
 
-            if (result) {
-                req.session.userId = rows[0].id; // Guarda el id del usuario en la sesión
-                req.session.userName = rows[0].nombre_usuario; // Guarda el nombre del usuario en la sesión
-                req.session.userEmail = rows[0].correo; // Guarda el correo del usuario en la sesión
-                res.redirect("/?login=exitoso");
-            } else {
-                res.status(401).send("Contraseña incorrecta");
-            }
-        });
-    });
+        // Guardar datos del usuario en la sesión
+        req.session.userId = user.id;
+        req.session.userName = user.nombre_usuario;
+
+        res.redirect("/?login=exitoso");
+    } catch (err) {
+        console.error("Error al iniciar sesión:", err);
+        res.status(500).send("Error en el servidor");
+    }
 });
 
 export default router;
