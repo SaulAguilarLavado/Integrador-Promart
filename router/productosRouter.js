@@ -8,19 +8,21 @@ import {
     renderOficina,
     renderPilasCargadores,
     renderSmartHome,
+    renderMovilidad,
     renderTV
 } from "../controller/productosController.js";
 
 const router = express.Router();
 
 router.get("/audio", renderAudio);
-router.get("/camaraDrones", renderCamarasDrones);
+router.get("/camaras-drones", renderCamarasDrones);
 router.get("/celulares", renderCelulares);
 router.get("/computo", renderComputo);
 router.get("/gamer", renderGamer);
 router.get("/oficina", renderOficina);
-router.get("/pilasCargadores", renderPilasCargadores);
-router.get("/smartHome", renderSmartHome);
+router.get("/movilidad", renderMovilidad);
+router.get("/pilas-cargadores", renderPilasCargadores);
+router.get("/smart-home", renderSmartHome);
 router.get("/tv", renderTV);
 
 export default router;
