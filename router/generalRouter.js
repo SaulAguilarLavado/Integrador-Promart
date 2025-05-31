@@ -1,45 +1,14 @@
 import express from "express";
+import * as generalController from "../controller/generalController.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("index", { userName });
-});
-
-router.get("/acerca", (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("general/Acerca", { userName });
-});
-
-router.get("/politicas", (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("general/Politicas", { userName });
-});
-
-router.get("/terminos", (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("general/Terminos", { userName });
-});
-
-router.get("/sugerencias", (req, res) => {
-    const userName = req.session?.userName || null; // Si no hay sesión, será null
-    res.render("general/Sugerencias", { userName });
-});
-
-router.get("/reclamaciones", (req, res) => {
-    const userName = req.session?.userName || null; // Obtén el nombre del usuario si está en sesión
-    res.render("general/Reclamaciones", { userName });
-});
-
-router.get("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error("Error al cerrar sesión:", err);
-            return res.status(500).send("Error al cerrar sesión");
-        }
-        res.redirect("/");
-    });
-});
+router.get("/", generalController.renderIndex);
+router.get("/acerca", generalController.renderAcerca);
+router.get("/politicas", generalController.renderPoliticas);
+router.get("/terminos", generalController.renderTerminos);
+router.get("/sugerencias", generalController.renderSugerencias);
+router.get("/reclamaciones", generalController.renderReclamaciones);
+router.get("/logout", generalController.logout);
 
 export default router;

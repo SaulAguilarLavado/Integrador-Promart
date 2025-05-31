@@ -7,6 +7,8 @@ import logInRoutes from "../router/logInRouter.js";
 import signUpRoutes from "../router/signUpRouter.js";
 import generalRouter from "../router/generalRouter.js";
 
+import { conectarDB } from "../DB/db.js";
+
 const app = express();
 
 // Configurar el motor de vistas
@@ -30,6 +32,9 @@ app.use(reclamacionesRouter);
 app.use(logInRoutes);
 app.use(signUpRoutes);
 app.use(generalRouter);
+
+// Conectar a la base de datos
+conectarDB();
 
 // Iniciar el servidor
 app.listen(3000, () => {

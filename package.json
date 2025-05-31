@@ -4,8 +4,8 @@
   "main": "index.ejs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./server/server.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --env node",
+    "dev": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,6 @@
     "url": "https://github.com/SaulAguilarLavado/Integrador-Promart/issues"
   },
   "homepage": "https://github.com/SaulAguilarLavado/Integrador-Promart#readme",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "ejs": "^3.1.10",
@@ -27,6 +26,11 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
 }
