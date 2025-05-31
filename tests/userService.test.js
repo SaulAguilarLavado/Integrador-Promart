@@ -1,4 +1,4 @@
-/* global jest */
+import { jest } from '@jest/globals';
 import userService from "../service/userService.js";
 import userDAO from "../DAO/userDAO.js";
 

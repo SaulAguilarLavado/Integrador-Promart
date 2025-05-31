@@ -1,10 +1,13 @@
 import sugerenciasService from "../service/sugerenciasService.js";
 
+// Función simple para validar formato de correo
+function validarCorreo(correo) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+}
+
 export const enviarSugerencia = async (req, res) => {
     const { nombre, email, categoria, sugerencia } = req.body;
     const id_usuario = req.session?.userId || null;
-
-    console.log("Datos recibidos:", { nombre, email, categoria, sugerencia, id_usuario });
 
     try {
         let nombreFinal = nombre;
@@ -13,6 +16,9 @@ export const enviarSugerencia = async (req, res) => {
         if (!id_usuario) {
             if (!nombre || !email) {
                 return res.status(400).send("El nombre y el correo electrónico son obligatorios.");
+            }
+            if (!validarCorreo(email)) {
+                return res.status(400).send("El correo electrónico no tiene un formato válido.");
             }
         } else {
             nombreFinal = req.session.userName;
@@ -23,8 +29,11 @@ export const enviarSugerencia = async (req, res) => {
             }
         }
 
+        if (!sugerencia || sugerencia.trim() === "") {
+            return res.status(400).send("La sugerencia no puede estar vacía.");
+        }
+
         await sugerenciasService.guardarSugerencia(id_usuario, nombreFinal, emailFinal, categoria, sugerencia);
-        console.log("Sugerencia guardada correctamente");
         res.redirect("/sugerencias?sugerencia=exitoso");
     } catch (err) {
         console.error("Error al guardar la sugerencia:", err);

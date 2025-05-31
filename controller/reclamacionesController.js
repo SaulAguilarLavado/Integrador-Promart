@@ -1,5 +1,10 @@
 import reclamacionesService from "../service/reclamacionesService.js";
 
+// Función simple para validar formato de DNI (8 dígitos)
+function validarDNI(dni) {
+    return /^\d{8}$/.test(dni);
+}
+
 export const enviarReclamacion = async (req, res) => {
     const { nombre, dni, categoria, reclamacion } = req.body;
     const id_usuario = req.session?.userId || null;
@@ -8,19 +13,24 @@ export const enviarReclamacion = async (req, res) => {
         let dniFinal = dni;
         let nombreFinal = nombre;
 
-        // Validar que el DNI no sea nulo o vacío
         if (!dniFinal || dniFinal.trim() === "") {
             return res.status(400).send("El DNI es obligatorio.");
         }
+        if (!validarDNI(dniFinal)) {
+            return res.status(400).send("El DNI debe tener 8 dígitos numéricos.");
+        }
+        if (!categoria || categoria.trim() === "") {
+            return res.status(400).send("La categoría es obligatoria.");
+        }
+        if (!reclamacion || reclamacion.trim() === "") {
+            return res.status(400).send("La reclamación no puede estar vacía.");
+        }
 
-        // Si el usuario ha iniciado sesión, usar el nombre de la sesión
         if (id_usuario) {
             nombreFinal = req.session.userName;
         }
 
-        // Guardar la reclamación
         await reclamacionesService.guardarReclamacion(id_usuario, nombreFinal, dniFinal, categoria, reclamacion);
-        console.log("Reclamación guardada correctamente");
         res.redirect("/reclamaciones?reclamaciones=exitoso");
     } catch (err) {
         console.error("Error al guardar la reclamación:", err);

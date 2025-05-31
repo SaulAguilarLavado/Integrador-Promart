@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import sugerenciasService from "../service/sugerenciasService.js";
 import sugerenciasDAO from "../DAO/sugerenciasDAO.js";
 

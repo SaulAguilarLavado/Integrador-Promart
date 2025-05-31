@@ -1,8 +1,12 @@
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 import userService from "../service/userService.js";
 
 export const login = async (req, res) => {
     const { correo, contra } = req.body;
+
+    if (!correo || !contra) {
+        return res.status(400).send("Correo y contraseña son obligatorios");
+    }
 
     try {
         const user = await userService.buscarUsuarioPorCorreo(correo);
