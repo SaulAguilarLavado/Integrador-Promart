@@ -124,64 +124,156 @@
     </body>
         <div class="overlay" id="overlay"></div>
 
-        <section class="contenedor-catalogo">
-            <h1>Nuestro Catalogo</h1>
-            <div class="contenedor-categorias">
-                <div class="categoria audio">
-                    <p>Audio</p>
-                    <a href="/productos/audio">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
+        <section>
+            
+        </section>
+
+        <footer class="footer">
+            <div class="contenedor-footer">
+                <div class="menu-footer">
+                    <div class="contacto">
+                        <p class="titulo-footer">Información de Contacto</p>
+                        <ul>
+                            <a href="https://maps.app.goo.gl/wqdoVP3pyeaj9Em27">
+                                <li>
+                                    Av. Alfredo Mendiola 7042, San Martín de Porres 15301
+                                </li>
+                            </a>
+                            <li>Teléfono: +01 712 - 43212</li>
+                            <li>servicioalcliente@rashperu.com</li>
+                        </ul>
+                    </div>
+
+                    <div class="informacion">
+                        <p class="titulo-footer">Información</p>
+                        <ul>a<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promart</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/styleIndexProductos.css">
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/logOutButton.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Agdasima&display=swap" rel="stylesheet">
+    </head>
+        <header>
+            <div class="contenedor-principal">
+                <div class="contenedor principal">
+                    <div class="soporte">
+                        <div class="contenido-soporte">
+                            <a href="https://api.whatsapp.com/send?phone=913221576" target="_blank">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" x-bind:stroke-width="stroke" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"></path>
+                                        <path d="M9.5 9h.01"></path>
+                                        <path d="M14.5 9h.01"></path>
+                                        <path d="M9.5 13a3.5 3.5 0 0 0 5 0"></path>
+                                    </svg>                                  
+                                </div>
+                                <span>Soporte al cliente</span>
+                                <br>
+                                <span>+01 712 - 43212</span>                                
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contenedor-logo">
+                        <h1 class="logo"><a href="/">PROMART</a></h1>
+                        <p class="slogan">Precios bajos con garantía</p>
+                    </div>
+    
+                    <div class="contenedor-usuario">
+                        <div class="mi-cuenta">
+                            <a href="#" id="showForms">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                    </svg>
+                                </div>
+                            </a>
+    
+                            <section class="form-container" id="loginSection">
+                                <h2>Iniciar Sesión</h2>
+                                <!-- Formulario de inicio de sesión -->
+                                <form action="/login" method="post" id="loginForm">
+                                    <label for="correo">Correo Electrónico:</label>
+                                    <input type="email" id="correo" name="correo" required>
+                                
+                                    <label for="contra">Contraseña:</label>
+                                    <input type="password" id="contra" name="contra" required>
+                                
+                                    <button type="submit">Iniciar Sesión</button>
+                                </form>
+                                <div class="message" id="loginMessage"></div>
+                                <p>¿No tienes cuenta? <a href="#" id="showRegisterForm">Registrarse</a></p>
+                            </section>
+    
+                            <section class="form-container" id="registerSection">
+                                <h2>Registrarse</h2>
+                                <form action="/validar" method="post" id="registrationForm">
+                                    <label for="nombre_usuario">Nombre de Usuario:</label>
+                                    <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+                                
+                                    <label for="correo">Correo Electrónico:</label>
+                                    <input type="email" id="correo" name="correo" required>
+                                
+                                    <label for="contra">Contraseña:</label>
+                                    <input type="password" id="contra" name="contra" required>
+                                
+                                    <button type="submit">Registrar</button>
+                                </form>
+                                <div class="message" id="registerMessage"></div>
+                                <p>¿Ya tienes cuenta? <a href="#" id="showLoginForm">Iniciar Sesión</a></p>
+                            </section>
+    
+                            <span id="userAccount">
+                                <%= userName || "Mi Cuenta" %>
+                            </span>
+                            <% if (userName) { %>
+                                <a href="/logout" id="logoutButton" class="logout-button" onclick="return logout()">Cerrar Sesión</a>
+                            <%}%>
+                        </div>
+                        <div class="carrito">
+                            <a href="../busqueda-producto/carrito.html">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M6 2a1 1 0 0 1 .993 .883l.007 .117v1.068l13.071 .935a1 1 0 0 1 .929 1.024l-.01 .114l-1 7a1 1 0 0 1 -.877 .853l-.113 .006h-12v2h10a3 3 0 1 1 -2.995 3.176l-.005 -.176l.005 -.176c.017 -.288 .074 -.564 .166 -.824h-5.342a3 3 0 1 1 -5.824 1.176l-.005 -.176l.005 -.176a3.002 3.002 0 0 1 1.995 -2.654v-12.17h-1a1 1 0 0 1 -.993 -.883l-.007 -.117a1 1 0 0 1 .883 -.993l.117 -.007h2zm0 16a1 1 0 1 0 0 2a1 1 0 0 0 0 -2zm11 0a1 1 0 1 0 0 2a1 1 0 0 0 0 -2z"></path>
+                                    </svg>
+                                </div>
+                            <span>Carrito</span>
+                            </a>
+                        </div>          
+                    </div>
                 </div>
-                <div class="categoria celulares">
-                    <p>Celulares y Accesorios</p>
-                    <a href="/productos/celulares">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="contenedor-navegacion" id="navMenu">
+                    <nav class="contenedor navegacion">
+                        <ul class="menu">
+                            <li><a href="/productos/audio">Audio</a></li>
+                            <li><a href="/productos/celulares">Celulares y Accesorios</a></li>
+                            <li><a href="/productos/gamer">Gamer</a></li>
+                            <li><a href="/productos/computo">Computo</a></li>
+                            <li><a href="/productos/smart-home">Smart Home</a></li>
+                            <li><a href="/productos/movilidad">Movilidad</a></li>
+                            <li><a href="/productos/camaras-drones">Camaras y Drones</a></li>
+                            <li><a href="/productos/tv">Tv y Video</a></li>
+                            <li><a href="/productos/oficina">Oficina</a></li>
+                            <li><a href="/productos/pilas-cargadores">Pilas y Cargadores</a></li>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="categoria gamer">
-                    <p>Gamer</p>
-                    <a href="/productos/gamer">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria computo">
-                    <p>Computo</p>
-                    <a href="/productos/computo">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria smart-home">
-                    <p>Smart Home</p>
-                    <a href="/productos/smart-home">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria camaras">
-                    <p>Camaras y Drones</p>
-                    <a href="/productos/camaras-drones">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria tv-video">
-                    <p>Tv y Video</p>
-                    <a href="/productos/tv">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria oficina">
-                    <p>Oficina</p>
-                    <a href="/productos/oficina">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-                <div class="categoria pilas-cargadores">
-                    <p>Pilas y Cargadores</p>
-                    <a href="/productos/pilas-cargadores">
-                        <span id="Ver-mas">Ver más</span>
-                    </a>
-                </div>
-            </div>
+            </div>    
+        </header>
+    </body>
+        <div class="overlay" id="overlay"></div>
+
+        <section>
+
         </section>
 
         <footer class="footer">
@@ -203,6 +295,26 @@
                     <div class="informacion">
                         <p class="titulo-footer">Información</p>
                         <ul>
+                            <li><a href="/acerca">Acerca de Nosotros</a></li>
+                            <li><a href="/politicas">Políticas de Privacidad</a></li>
+                            <li><a href="/terminos">Términos y condiciones</a></li>
+                            <li><a href="/sugerencias">Sugerencias</a></li>
+                            <li><a href="/reclamaciones">Reclamaciones</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <footer class="final">
+            <p>Promart © 2025 - Curso Integrador.</p>
+        </footer>
+
+        <script src="/server/server.js"></script>
+        <script src="/Js/logIn.js"></script>
+        <script src="/Js/signUp.js"></script>
+        <script src="/Js/showLogin.js"></script>
+    </body>
+</html>
                             <li><a href="/acerca">Acerca de Nosotros</a></li>
                             <li><a href="/politicas">Políticas de Privacidad</a></li>
                             <li><a href="/terminos">Términos y condiciones</a></li>

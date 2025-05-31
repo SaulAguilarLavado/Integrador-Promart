@@ -1,0 +1,9 @@
+export const renderAudio = (req, res) => res.render("productos/audio");
+export const renderCamarasDrones = (req, res) => res.render("productos/camarasDrones");
+export const renderCelulares = (req, res) => res.render("productos/celulares");
+export const renderComputo = (req, res) => res.render("productos/computo");
+export const renderGamer = (req, res) => res.render("productos/gamer");
+export const renderOficina = (req, res) => res.render("productos/oficina");
+export const renderPilasCargadores = (req, res) => res.render("productos/pilasCargadores");
+export const renderSmartHome = (req, res) => res.render("productos/smartHome");
+export const renderTV = (req, res) => res.render("productos/TV");
