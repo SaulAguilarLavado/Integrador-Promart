@@ -1,6 +1,6 @@
 import { pool } from "../DB/db.js";
 import categoriasDAO from "../DAO/categoriasDAO.js";
-import productosDAO from "../DAO/productosDAO.js";
+import productosService from "../service/productosService.js"; 
 import { obtenerTotalesDashboard } from "../DAO/dashboardDAO.js";
 import sugerenciasDAO from "../DAO/sugerenciasDAO.js";
 import reclamacionesDAO from "../DAO/reclamacionesDAO.js";
@@ -12,7 +12,7 @@ export const renderDashboard = async (req, res) => {
 
 export const renderAdminProductos = async (req, res) => {
     const categorias = await categoriasDAO.obtenerTodas();
-    const productos = await productosDAO.obtenerTodosConCategoria();
+    const productos = await productosService.obtenerTodosConCategoria();
     res.render("admin/productos", { categorias, productos });
 };
 

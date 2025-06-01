@@ -1,7 +1,7 @@
-import productosDAO from "../DAO/productosDAO.js";
+import productosService from "../service/productosService.js";
 
 export const renderCategoria = (nombreCategoria, vista) => async (req, res) => {
-    const productos = await productosDAO.obtenerPorCategoria(nombreCategoria);
+    const productos = await productosService.obtenerPorCategoria(nombreCategoria);
     const userName = req.session?.userName || null;
     res.render(`productos/${vista}`, { productos, userName });
 };
