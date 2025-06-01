@@ -87,3 +87,8 @@ describe("Admin Nav Controller", () => {
         expect(res.body.reclamaciones[0].reclamo).toBe("Demora");
     });
 });
+
+import { pool } from "../DB/db.js";
+afterAll(async () => {
+    await pool.end();
+});
