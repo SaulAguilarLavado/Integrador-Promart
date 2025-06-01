@@ -38,4 +38,5 @@ app.use("/admin", adminRouter);
 // Iniciar el servidor
 app.listen(3000, () => {
     console.log("Server is running on port http://localhost:3000");
+    console.log("Admin Server is running on port http://localhost:3000/admin/login");
 });
