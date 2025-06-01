@@ -1,30 +1,23 @@
-import conexion from "../DB/db.js";
+import { pool } from "../DB/db.js";
 
 class ReclamacionesDAO {
-    insertarReclamacion(id_usuario, nombre, dni, categoria, reclamacion) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                INSERT INTO reclamaciones (id_usuario, nombre, dni, categoria, reclamacion) VALUES (?, ?, ?, ?, ?)
-            `;
-            conexion.query(query, [id_usuario, nombre, dni, categoria, reclamacion], (err, result) => {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(result);
-            });
-        });
+    async insertarReclamacion(id_usuario, nombre, dni, categoria, reclamacion) {
+        const query = `
+            INSERT INTO reclamaciones (id_usuario, nombre, dni, categoria, reclamacion) VALUES (?, ?, ?, ?, ?)
+        `;
+        const [result] = await pool.query(query, [id_usuario, nombre, dni, categoria, reclamacion]);
+        return result;
     }
 
-    obtenerUsuarioPorId(id_usuario) {
-        return new Promise((resolve, reject) => {
-            const query = "SELECT dni FROM usuarios WHERE id = ?";
-            conexion.query(query, [id_usuario], (err, results) => {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(results[0]);
-            });
-        });
+    async obtenerUsuarioPorId(id_usuario) {
+        const query = "SELECT dni FROM usuarios WHERE id = ?";
+        const [results] = await pool.query(query, [id_usuario]);
+        return results[0];
+    }
+
+    async obtenerTodas() {
+        const [rows] = await pool.query("SELECT * FROM reclamaciones");
+        return rows;
     }
 }
 

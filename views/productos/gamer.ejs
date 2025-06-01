@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/css/styleIndexProductos.css">
         <link rel="stylesheet" href="/css/login.css">
         <link rel="stylesheet" href="/css/logOutButton.css">
+        <link rel="stylesheet" href="/css/cards-productos.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,8 +125,22 @@
     </body>
         <div class="overlay" id="overlay"></div>
 
-        <section>
-
+        <section class="cards-container">
+            <% productos.forEach(prod=> { %>
+                <div class="card">
+                    <h3>
+                        <%= prod.nombre_producto %>
+                    </h3>
+                    <% if (prod.imagen) { %>
+                        <img src="/uploads/<%= prod.imagen %>" alt="Imagen producto" style="max-width:100px;">
+                        <% } %>
+                            <p><strong>Descripción:</strong>
+                                <%= prod.descripcion %>
+                            </p>
+                            <p style="margin-top:8px;"><strong>Precio:</strong> S/ <%= prod.precio %>
+                            </p>
+                </div>
+                <% }) %>
         </section>
 
         <footer class="footer">

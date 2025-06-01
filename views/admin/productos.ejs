@@ -1,11 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-productos.css">
 </head>
 <body>
-    
+    <aside class="sidebar">
+        <h2>Admin Promart</h2>
+        <nav>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/productos">Gestionar Productos</a>
+            <a href="/admin/usuarios">Gestionar Usuarios</a>
+            <a href="/admin/sugerencias">Ver Sugerencias</a>
+            <a href="/admin/reclamaciones">Ver Reclamaciones</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h1>Gestión de Productos</h1>
+        <div class="productos-flex">
+            <section class="form-section">
+                <h2>Agregar Producto</h2>
+                <form action="/admin/productos" method="POST" enctype="multipart/form-data" class="form-producto">
+                    <label>Nombre:</label>
+                    <input type="text" name="nombre_producto" required>
+                    <label>Descripción:</label>
+                    <textarea name="descripcion" required></textarea>
+                    <label>Precio:</label>
+                    <input type="number" name="precio" step="0.01" required>
+                    <label>Stock:</label>
+                    <input type="number" name="stock" required>
+                    <label>Categoría:</label>
+                    <select name="id_categoria" required>
+                        <% categorias.forEach(cat=> { %>
+                            <option value="<%= cat.id %>">
+                                <%= cat.nombre_categoria %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <label>Imagen:</label>
+                    <input type="file" name="imagen">
+                    <button type="submit">Agregar Producto</button>
+                </form>
+            </section>
+            <section class="cards-section">
+                <h2>Productos Existentes</h2>
+                <div class="cards-container">
+                    <% productos.forEach(prod=> { %>
+                        <div class="card">
+                            <h3>
+                                <%= prod.nombre_producto %>
+                            </h3>
+                            <p><strong>Categoría:</strong>
+                                <%= prod.nombre_categoria %>
+                            </p>
+                            <p><strong>Precio:</strong> S/ <%= prod.precio %>
+                            </p>
+                            <p><strong>Stock:</strong>
+                                <%= prod.stock %>
+                            </p>
+                            <% if (prod.imagen) { %>
+                                <img src="/uploads/<%= prod.imagen %>" alt="Imagen producto" style="max-width:100px;">
+                                <%
+                            }%>
+                                <p><strong>Descripción:</strong>
+                                    <%= prod.descripcion %>
+                                </p>
+                                <div class="acciones-producto">
+                                    <form action="/admin/productos/<%= prod.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn-eliminar">Eliminar</button>
+                                    </form>
+                                    <a href="/admin/productos/<%= prod.id %>/editar" class="btn-editar">Editar</a>
+                                </div>
+                        </div>
+                        <%
+                    }) %>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

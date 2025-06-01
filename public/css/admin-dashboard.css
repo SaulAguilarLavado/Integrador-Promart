@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f6fa;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 240px;
+    background: #e38509;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 0 0 0;
+    min-height: 100vh;
+    box-shadow: 2px 0 8px rgba(44,62,80,0.06);
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.sidebar nav {
+    width: 100%;
+}
+
+.sidebar a {
+    display: block;
+    width: 100%;
+    padding: 16px 32px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    transition: background 0.2s;
+}
+
+.sidebar a:hover {
+    background: #f5cf15;
+    color: #e38509;
+    font-weight: bold;
+}
+
+.main-content {
+    margin-left: 240px;
+    padding: 40px 32px;
+    flex: 1;
+}
+
+h1 {
+    color: #e38509;
+    margin-bottom: 32px;
+}
+
+.stats {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(44,62,80,0.08);
+    padding: 32px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+}
+
+.stats p {
+    font-size: 1.1rem;
+    color: #2d3436;
+    margin: 0;
+}

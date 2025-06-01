@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugerencias Recibidas</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-cards.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Admin Promart</h2>
+        <nav>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/productos">Gestionar Productos</a>
+            <a href="/admin/usuarios">Gestionar Usuarios</a>
+            <a href="/admin/sugerencias">Ver Sugerencias</a>
+            <a href="/admin/reclamaciones">Ver Reclamaciones</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h1>Sugerencias Recibidas</h1>
+        <div class="cards-container">
+            <% sugerencias.forEach(s=> { %>
+                <div class="card">
+                    <h3><%= s.nombre %></h3>
+                    <p><strong>ID:</strong> <%= s.id %></p>
+                    <p><strong>Email:</strong> <%= s.email %></p>
+                    <p><strong>Categoría:</strong> <%= s.categoria %></p>
+                    <p><strong>Sugerencia:</strong> <%= s.sugerencia %></p>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+</body>
+</html>

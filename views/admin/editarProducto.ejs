@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-productos.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Admin Promart</h2>
+        <nav>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/productos">Gestionar Productos</a>
+            <a href="/admin/usuarios">Gestionar Usuarios</a>
+            <a href="/admin/sugerencias">Ver Sugerencias</a>
+            <a href="/admin/reclamaciones">Ver Reclamaciones</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h1>Editar Producto</h1>
+        <form action="/admin/productos/<%= producto.id %>/editar" method="POST" enctype="multipart/form-data" class="form-producto">
+            <label>Nombre:</label>
+            <input type="text" name="nombre_producto" value="<%= producto.nombre_producto %>" required>
+            <label>Descripción:</label>
+            <textarea name="descripcion" required><%= producto.descripcion %></textarea>
+            <label>Precio:</label>
+            <input type="number" name="precio" value="<%= producto.precio %>" required>
+            <label>Stock:</label>
+            <input type="number" name="stock" value="<%= producto.stock %>" required>
+            <label>Categoría:</label>
+            <select name="id_categoria" required>
+                <% categorias.forEach(cat => { %>
+                    <option value="<%= cat.id %>" <%= cat.id === producto.id_categoria ? "selected" : "" %>><%= cat.nombre_categoria %></option>
+                <% }) %>
+            </select>
+            <input type="hidden" name="imagen_actual" value="<%= producto.imagen %>">
+            <label>Imagen:</label>
+            <input type="file" name="imagen">
+            <% if (producto.imagen) { %>
+                <img src="/uploads/<%= producto.imagen %>" alt="Imagen actual" style="max-width:100px;">
+            <% } %>
+            <button type="submit">Actualizar</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,40 +1,19 @@
-export const renderAudio = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/audio", { userName });
+import productosDAO from "../DAO/productosDAO.js";
+
+export const renderCategoria = (nombreCategoria, vista) => async (req, res) => {
+    const productos = await productosDAO.obtenerPorCategoria(nombreCategoria);
+    const userName = req.session?.userName || null;
+    res.render(`productos/${vista}`, { productos, userName });
 };
-export const renderCamarasDrones = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/camaras-drones", { userName });
-};
-export const renderCelulares = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/celulares", { userName });
-};
-export const renderComputo = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/computo", { userName });
-};
-export const renderGamer = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/gamer", { userName });
-};
-export const renderOficina = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/oficina", { userName });
-};
-export const renderMovilidad = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/movilidad", { userName });
-};
-export const renderPilasCargadores = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/pilas-cargadores", { userName });
-};
-export const renderSmartHome = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/smart-home", { userName });
-};
-export const renderTV = (req, res) => {
-    const userName = req.session?.userName || "Mi Cuenta";
-    res.render("productos/tv", { userName });
-};
+
+// Exporta funciones específicas para cada categoría:
+export const renderAudio = renderCategoria("audio", "audio");
+export const renderCamarasDrones = renderCategoria("camaras-drones", "camaras-drones");
+export const renderCelulares = renderCategoria("celulares", "celulares");
+export const renderComputo = renderCategoria("computo", "computo");
+export const renderGamer = renderCategoria("gamer", "gamer");
+export const renderOficina = renderCategoria("oficina", "oficina");
+export const renderMovilidad = renderCategoria("movilidad", "movilidad");
+export const renderPilasCargadores = renderCategoria("pilas-cargadores", "pilas-cargadores");
+export const renderSmartHome = renderCategoria("smart-home", "smart-home");
+export const renderTV = renderCategoria("tv", "tv");

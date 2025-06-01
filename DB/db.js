@@ -1,20 +1,11 @@
-import mysql from "mysql";
+import mysql from "mysql2/promise";
 
-const conexion = mysql.createConnection({
+export const pool = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "admin",
-    database: "Integrador"
+    database: "Integrador",
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
-
-export function conectarDB() {
-    conexion.connect((err) => {
-        if (err) {
-            console.error("Error al conectar a la base de datos:", err.message);
-        } else {
-            console.log("Conexión a la base de datos exitosa");
-        }
-    });
-}
-
-export default conexion;

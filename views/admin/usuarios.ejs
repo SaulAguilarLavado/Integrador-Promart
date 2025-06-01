@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Usuarios Registrados</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-cards.css">
 </head>
 <body>
-    
+    <aside class="sidebar">
+        <h2>Admin Promart</h2>
+        <nav>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/productos">Gestionar Productos</a>
+            <a href="/admin/usuarios">Gestionar Usuarios</a>
+            <a href="/admin/sugerencias">Ver Sugerencias</a>
+            <a href="/admin/reclamaciones">Ver Reclamaciones</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h1>Usuarios Registrados</h1>
+        <div class="cards-container">
+            <% usuarios.forEach(usuario => { %>
+                <div class="card">
+                    <h3><%= usuario.nombre_usuario %></h3>
+                    <p><strong>ID:</strong> <%= usuario.id %></p>
+                    <p><strong>Correo:</strong> <%= usuario.correo %></p>
+                </div>
+            <% }) %>
+        </div>
+    </main>
 </body>
 </html>
