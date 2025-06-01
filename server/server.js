@@ -7,6 +7,7 @@ import logInRoutes from "../router/logInRouter.js";
 import signUpRoutes from "../router/signUpRouter.js";
 import generalRouter from "../router/generalRouter.js";
 import productosRouter from "../router/productosRouter.js";
+import adminRouter from "../router/adminRouter.js";
 
 import { conectarDB } from "../DB/db.js";
 
@@ -34,6 +35,7 @@ app.use(logInRoutes);
 app.use(signUpRoutes);
 app.use(generalRouter);
 app.use("/productos", productosRouter);
+app.use("/admin", adminRouter);
 
 // Conectar a la base de datos
 conectarDB();
