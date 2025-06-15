@@ -9,11 +9,13 @@
         <link rel="stylesheet" href="/css/login.css">
         <link rel="stylesheet" href="/css/logOutButton.css">
         <link rel="stylesheet" href="/css/cards-productos.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap"
+            rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Agdasima&display=swap" rel="stylesheet">
     </head>
+    <body data-user-id="<%= typeof userId !== 'undefined' ? userId : '' %>">
         <header>
             <div class="contenedor-principal">
                 <div class="contenedor principal">
@@ -92,7 +94,7 @@
                             <%}%>
                         </div>
                         <div class="carrito">
-                            <a href="../busqueda-producto/carrito.html">
+                            <a href="/carrito">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" x-bind:width="size" x-bind:height="size" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                                         <path d="M6 2a1 1 0 0 1 .993 .883l.007 .117v1.068l13.071 .935a1 1 0 0 1 .929 1.024l-.01 .114l-1 7a1 1 0 0 1 -.877 .853l-.113 .006h-12v2h10a3 3 0 1 1 -2.995 3.176l-.005 -.176l.005 -.176c.017 -.288 .074 -.564 .166 -.824h-5.342a3 3 0 1 1 -5.824 1.176l-.005 -.176l.005 -.176a3.002 3.002 0 0 1 1.995 -2.654v-12.17h-1a1 1 0 0 1 -.993 -.883l-.007 -.117a1 1 0 0 1 .883 -.993l.117 -.007h2zm0 16a1 1 0 1 0 0 2a1 1 0 0 0 0 -2zm11 0a1 1 0 1 0 0 2a1 1 0 0 0 0 -2z"></path>
@@ -122,9 +124,8 @@
                 </div>
             </div>    
         </header>
-    </body>
         <div class="overlay" id="overlay"></div>
-
+        
         <section class="cards-container">
             <% productos.forEach(prod=> { %>
                 <div class="card">
@@ -139,6 +140,9 @@
                             </p>
                             <p style="margin-top:8px;"><strong>Precio:</strong> S/ <%= prod.precio %>
                             </p>
+                            <button class="btn-comprar" data-id="<%= prod.id %>">
+                                Comprar
+                            </button>
                 </div>
                 <% }) %>
         </section>
@@ -175,10 +179,14 @@
         <footer class="final">
             <p>Promart © 2025 - Curso Integrador.</p>
         </footer>
-
         <script src="/server/server.js"></script>
         <script src="/Js/logIn.js"></script>
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
+        <script>
+            const userId = document.body.dataset.userId || null;
+            window.userId = userId; // Así tu JS del carrito puede usar window.userId
+        </script>
+        <script src="/Js/carrito.js"></script>
     </body>
 </html>

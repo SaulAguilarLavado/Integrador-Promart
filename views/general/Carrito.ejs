@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Promart</title>
         <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/styleSecu.css">
+        <link rel="stylesheet" href="/css/carrito.css">
         <link rel="stylesheet" href="/css/login.css"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,76 +102,14 @@
                         </div>          
                     </div>
                 </div>
-                <button class="menu-toggle" id="menuToggle">☰</button>
-                <div class="contenedor-navegacion" id="navMenu">
-                    <nav class="contenedor navegacion">
-                        <ul class="menu">
-                            <li><a href="/productos/audio">Audio</a></li>
-                            <li><a href="/productos/celulares">Celulares y Accesorios</a></li>
-                            <li><a href="/productos/gamer">Gamer</a></li>
-                            <li><a href="/productos/computo">Computo</a></li>
-                            <li><a href="/productos/smart-home">Smart Home</a></li>
-                            <li><a href="/productos/movilidad">Movilidad</a></li>
-                            <li><a href="/productos/camaras-drones">Camaras y Drones</a></li>
-                            <li><a href="/productos/tv">Tv y Video</a></li>
-                            <li><a href="/productos/oficina">Oficina</a></li>
-                            <li><a href="/productos/pilas-cargadores">Pilas y Cargadores</a></li>
-                        </ul>
-                    </nav>
-                </div>
             </div>    
         </header>
 
         <div class="overlay" id="overlay"></div>
 
-        <section class="Descripcion">
-            <h2>Política de Privacidad</h2>
-            <p>
-                Promart protege tus datos personales utilizando certificados de seguridad SSL VTEX, asegurando que toda la información transmitida a través de su sitio web esté cifrada y segura. Esto incluye datos sensibles como números de tarjetas de crédito y contraseñas. El protocolo SSL (Secure Socket Layer) es un estándar en la industria para garantizar la seguridad de las transacciones en línea.
-            </p>
-        
-            <h3>1. Recopilación de datos personales</h3>
-            <p>Promart puede recolectar información como:</p>
-            <ul>
-                <li>Nombres completos</li>
-                <li>DNI o RUC</li>
-                <li>Dirección de entrega y de facturación</li>
-                <li>Número de teléfono y correo electrónico</li>
-                <li>Información de pago (bajo estándares de seguridad)</li>
-            </ul>
-            
-            <h3>2. Uso de la información</h3>
-            <p>Los datos personales se utilizan para:</p>
-            <ul>
-                <li>Procesar pedidos y gestionar entregas</li>
-                <li>Atender consultas y brindar soporte postventa</li>
-                <li>Informar sobre promociones, campañas y novedades (previo consentimiento)</li>
-                <li>Evaluar la calidad del servicio</li>
-                <li>Fines estadísticos o de mejora de experiencia</li>
-            </ul>
-            
-            <h3>3. Medidas de seguridad</h3>
-            <p>Promart emplea protocolos de seguridad SSL (Secure Socket Layer) provistos por VTEX para cifrar la información sensible. Esto protege datos como contraseñas y números de tarjetas de crédito durante su transmisión.</p>
-            
-            <h3>4. Compartición con terceros</h3>
-            <p>Promart puede compartir información con terceros (proveedores logísticos, financieros, entre otros), exclusivamente para ejecutar los servicios contratados. No comercializa ni transfiere datos personales sin consentimiento expreso, salvo obligación legal.</p>
-            
-            <h3>5. Derechos del titular de datos</h3>
-            <p>Los usuarios pueden ejercer sus derechos de:</p>
-            <ul>
-                <li>Acceder a sus datos</li>
-                <li>Rectificar información incorrecta</li>
-                <li>Cancelar su uso (eliminación)</li>
-                <li>Oponerse al tratamiento para ciertos fines (derechos ARCO)</li>
-            </ul>
-            <p>Esto se realiza mediante solicitudes formales a través de canales designados por Promart.</p>
-            
-            <h3>6. Tiempo de conservación</h3>
-            <p>Los datos personales serán almacenados solo por el tiempo necesario para cumplir las finalidades mencionadas o exigencias legales.</p>
-            
-            <h3>7. Actualización de la política</h3>
-            <p>Promart se reserva el derecho de modificar sus políticas de privacidad en cualquier momento. Cualquier cambio será comunicado oportunamente en su sitio web.</p>
-
+        <section>
+            <h2>Carrito de Compras</h2>
+            <ul id="lista-carrito"></ul>
         </section>
         
 
@@ -186,6 +124,7 @@
                                     Av. Alfredo Mendiola 7042, San Martín de Porres 15301
                                 </li>
                             </a>
+                            
                             <li>Teléfono: +01 712 - 43212</li>
                             <li>servicioalcliente@rashperu.com</li>
                         </ul>
@@ -220,5 +159,6 @@
                 alert("Usuario registrado correctamente");
             }
         </script>
-    </body>
-</html>  
+        <script src="/Js/carrito.js"></script>
+    </body>    
+</html>        

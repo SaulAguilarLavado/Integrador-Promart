@@ -3,9 +3,9 @@ import productosService from "../service/productosService.js";
 export const renderCategoria = (nombreCategoria, vista) => async (req, res) => {
     const productos = await productosService.obtenerPorCategoria(nombreCategoria);
     const userName = req.session?.userName || null;
-    res.render(`productos/${vista}`, { productos, userName });
+    const userId = req.session.userId || null;
+    res.render(`productos/${vista}`, { productos, userName, userId });
 };
-
 // Exporta funciones específicas para cada categoría:
 export const renderAudio = renderCategoria("audio", "audio");
 export const renderCamarasDrones = renderCategoria("camaras-drones", "camaras-drones");

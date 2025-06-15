@@ -4,6 +4,7 @@ import * as generalController from "../controller/generalController.js";
 const router = express.Router();
 
 router.get("/", generalController.renderIndex);
+router.get("/carrito", generalController.mostrarCarrito);
 router.get("/acerca", generalController.renderAcerca);
 router.get("/politicas", generalController.renderPoliticas);
 router.get("/terminos", generalController.renderTerminos);

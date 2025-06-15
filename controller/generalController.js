@@ -2,6 +2,11 @@ export const renderIndex = (req, res) => {
     const userName = req.session?.userName || "Mi Cuenta";
     res.render("index", { userName });
 };
+export const mostrarCarrito = (req, res) => {
+    const userName = req.session?.userName || null;
+    const userId = req.session.userId || null;
+    res.render("general/Carrito", { userName, userId });
+};
 
 export const renderAcerca = (req, res) => {
     const userName = req.session?.userName || "Mi Cuenta";
