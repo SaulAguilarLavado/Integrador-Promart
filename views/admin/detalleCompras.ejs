@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Compras</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-detalleCompra.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Admin Promart</h2>
+        <nav>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/productos">Gestionar Productos</a>
+            <a href="/admin/usuarios">Gestionar Usuarios</a>
+            <a href="/admin/sugerencias">Ver Sugerencias</a>
+            <a href="/admin/reclamaciones">Ver Reclamaciones</a>
+            <a href="/admin/detalle-compras">Detalle de Compras</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <h1>Detalle de Compras</h1>
+        <% compras.forEach(compra => { %>
+            <table class="tabla-detalle-compras">
+                <thead>
+                    <tr class="compra-header">
+                        <td colspan="8">
+                            <span>Fecha: <%= compra.fecha_compra.toLocaleString ? compra.fecha_compra.toLocaleString() : compra.fecha_compra %></span> |
+                            <span>Usuario: <%= compra.nombre_usuario %></span> |
+                            <span>Correo: <%= compra.correo %></span> |
+                            <span>Total Compra: <b>S/ <%= compra.total %></b></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Imagen</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% compra.productos.forEach(det => { %>
+                        <tr>
+                            <td><%= det.nombre_producto %></td>
+                            <td>
+                                <% if (det.imagen) { %>
+                                    <img src="/uploads/<%= det.imagen %>" alt="img">
+                                <% } %>
+                            </td>
+                            <td><%= det.cantidad %></td>
+                            <td>S/ <%= det.precio_unitario %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% }) %>
+    </main>
+</body>
+</html>

@@ -107,10 +107,18 @@
 
         <div class="overlay" id="overlay"></div>
 
-        <section>
-            <h2>Carrito de Compras</h2>
-            <ul id="lista-carrito"></ul>
-        </section>
+        <div id="carrito-main-container">
+            <section>
+                <h2>Carrito de Compras</h2>
+                <ul id="lista-carrito"></ul>
+                <div id="carrito-total-container">
+                    <span id="carrito-total"></span>
+                    <input type="number" id="monto-pagado" placeholder="Ingrese el monto a pagar" min="0" step="0.01">
+                    <button id="btn-comprar">Comprar</button>
+                </div>
+                <div id="mensaje-compra"></div>
+            </section>
+        </div>
         
 
         <footer class="footer">

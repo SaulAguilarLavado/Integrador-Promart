@@ -9,7 +9,8 @@ import {
     renderAdminProductos,
     renderAdminUsuarios,
     renderAdminSugerencias,
-    renderAdminReclamaciones
+    renderAdminReclamaciones,
+    renderAdminDetalleCompras
 } from "../controller/adminNavController.js";
 import multer from "multer";
 import productosDAO from "../DAO/productosDAO.js";
@@ -56,5 +57,6 @@ router.post("/productos/:id/editar", upload.single("imagen"), async (req, res) =
 router.get("/usuarios", renderAdminUsuarios);
 router.get("/sugerencias", renderAdminSugerencias);
 router.get("/reclamaciones", renderAdminReclamaciones);
+router.get("/detalle-compras", renderAdminDetalleCompras);
 
 export default router;

@@ -36,6 +36,20 @@ document.addEventListener("DOMContentLoaded", function() {
             // Mostrar el carrito solo en la página del carrito
             const listaCarrito = document.getElementById("lista-carrito");
             if (listaCarrito) {
+                // Agrega los elementos para el total, input y botón comprar si no existen
+                let totalContainer = document.getElementById("carrito-total-container");
+                if (!totalContainer) {
+                    totalContainer = document.createElement("div");
+                    totalContainer.id = "carrito-total-container";
+                    totalContainer.innerHTML = `
+                        <span id="carrito-total"></span>
+                        <input type="number" id="monto-pagado" placeholder="Ingrese el monto a pagar" min="0" step="0.01">
+                        <button id="btn-comprar">Comprar</button>
+                        <div id="mensaje-compra"></div>
+                    `;
+                    listaCarrito.parentNode.insertBefore(totalContainer, listaCarrito.nextSibling);
+                }
+
                 cargarCarrito();
 
                 async function cargarCarrito() {
@@ -43,10 +57,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         .then(res => res.ok ? res.json() : [])
                         .then(productos => {
                             listaCarrito.innerHTML = "";
+                            let total = 0;
                             if (productos.length === 0) {
                                 listaCarrito.innerHTML = "<li>No hay productos en el carrito.</li>";
+                                document.getElementById("carrito-total").textContent = "";
                             } else {
                                 productos.forEach(item => {
+                                    total += item.precio * item.cantidad;
                                     const li = document.createElement("li");
                                     li.classList.add("carrito-item");
                                     li.innerHTML = `
@@ -60,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     `;
                                     listaCarrito.appendChild(li);
                                 });
+                                document.getElementById("carrito-total").textContent = "Total a pagar: S/ " + total.toFixed(2);
 
                                 // Eventos para sumar/restar/eliminar
                                 document.querySelectorAll(".btn-sumar").forEach(btn => {
@@ -81,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         })
                         .catch(() => {
                             listaCarrito.innerHTML = "<li>Debe iniciar sesión para ver su carrito.</li>";
+                            document.getElementById("carrito-total").textContent = "";
                         });
                 }
 
@@ -118,6 +137,38 @@ document.addEventListener("DOMContentLoaded", function() {
                         alert("Error de conexión");
                     }
                 }
+
+                // Evento para el botón Comprar
+                document.getElementById("btn-comprar").addEventListener("click", async function() {
+                    const montoPagado = Number(document.getElementById("monto-pagado").value);
+                    const totalTexto = document.getElementById("carrito-total").textContent;
+                    const total = Number(totalTexto.replace(/[^\d.]/g, ''));
+                    const mensajeCompra = document.getElementById("mensaje-compra");
+                    if (montoPagado < total) {
+                        mensajeCompra.textContent = "El monto ingresado es insuficiente.";
+                        mensajeCompra.style.color = "red";
+                        return;
+                    }
+                    try {
+                        const res = await fetch('/api/carrito/comprar', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ montoPagado })
+                        });
+                        const data = await res.json();
+                        if (res.ok) {
+                            mensajeCompra.textContent = "¡Compra realizada con éxito!";
+                            mensajeCompra.style.color = "green";
+                            cargarCarrito();
+                        } else {
+                            mensajeCompra.textContent = data.error || "Error al procesar la compra.";
+                            mensajeCompra.style.color = "red";
+                        }
+                    } catch (err) {
+                        mensajeCompra.textContent = "Error de conexión.";
+                        mensajeCompra.style.color = "red";
+                    }
+                });
             }
         });
 });
