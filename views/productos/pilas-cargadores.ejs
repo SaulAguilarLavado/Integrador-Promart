@@ -139,6 +139,9 @@
                             </p>
                             <p style="margin-top:8px;"><strong>Precio:</strong> S/ <%= prod.precio %>
                             </p>
+                            <button class="btn-comprar" data-id="<%= prod.id %>">
+                                Comprar
+                            </button>
                 </div>
                 <% }) %>
         </section>
@@ -180,5 +183,10 @@
         <script src="/Js/logIn.js"></script>
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
+        <script>
+            const userId = document.body.dataset.userId || null;
+            window.userId = userId; // Así tu JS del carrito puede usar window.userId
+        </script>
+        <script src="/Js/carrito.js"></script>
     </body>
 </html>
