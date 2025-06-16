@@ -1,27 +1,29 @@
 import { jest } from '@jest/globals';
 
-// Mockea productosService
+const obtenerPorCategoria = jest.fn((categoria) => Promise.resolve([{ id: 1, nombre_producto: "Test", categoria }]));
+
 jest.unstable_mockModule("../service/productosService.js", () => ({
-    default: {
-        obtenerPorCategoria: jest.fn((categoria) => Promise.resolve([{ id: 1, nombre_producto: "Test", categoria }])),
-    }
+    default: { obtenerPorCategoria },
 }));
 
-import request from "supertest";
-import express from "express";
-
-let app;
+let app, request;
 
 beforeAll(async () => {
+    const express = (await import("express")).default;
+    request = (await import("supertest")).default;
     const { renderAudio, renderCamarasDrones } = await import("../controller/productosController.js");
     app = express();
 
-    // Mock render para capturar el renderizado
+    // Mockea req.session para todos los requests
+    app.use((req, res, next) => {
+        req.session = { userId: 1, userName: "TestUser" };
+        next();
+    });
+
     app.response.render = function (view, options) {
         this.status(200).json({ view, ...options });
     };
 
-    // Rutas de ejemplo para testear
     app.get("/productos/audio", renderAudio);
     app.get("/productos/camaras-drones", renderCamarasDrones);
 });
