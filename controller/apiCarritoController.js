@@ -83,7 +83,6 @@ export const realizarCompra = async (req, res) => {
 
 export const verDetalleCompras = async (req, res) => {
     try {
-        // Aquí podrías validar que sea admin
         const detalles = await carritoService.getDetalleCompras();
         res.render("admin/detalleCompras", { detalles });
     } catch (err) {
