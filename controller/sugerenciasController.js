@@ -1,6 +1,5 @@
 import sugerenciasService from "../service/sugerenciasService.js";
 
-// Función simple para validar formato de correo
 function validarCorreo(correo) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
 }
