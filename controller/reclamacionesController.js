@@ -1,6 +1,5 @@
 import reclamacionesService from "../service/reclamacionesService.js";
 
-// Función simple para validar formato de DNI (8 dígitos)
 function validarDNI(dni) {
     return /^\d{8}$/.test(dni);
 }
