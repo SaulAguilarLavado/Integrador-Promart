@@ -55,7 +55,7 @@ describe("POST /sugerencias", () => {
             categoria: "General",
             sugerencia: "Una sugerencia"
         });
-        expect(res.status).toBe(302); // Redirección
+        expect(res.status).toBe(302);
         expect(res.headers.location).toBe("/sugerencias?sugerencia=exitoso");
     });
 });
