@@ -69,7 +69,7 @@ describe("POST /signup", () => {
             correo: "nuevo@mail.com",
             contra: "123456"
         });
-        expect(res.status).toBe(302); // Redirección
+        expect(res.status).toBe(302);
         expect(res.headers.location).toBe("/?registro=exitoso");
     });
 });
