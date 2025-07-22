@@ -67,7 +67,7 @@ describe("POST /reclamaciones", () => {
             categoria: "Producto",
             reclamacion: "Detalle"
         });
-        expect(res.status).toBe(302); // Redirección
+        expect(res.status).toBe(302);
         expect(res.headers.location).toBe("/reclamaciones?reclamaciones=exitoso");
     });
 });
