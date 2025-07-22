@@ -11,7 +11,6 @@ jest.unstable_mockModule("../service/userService.js", () => ({
     }
 }));
 
-// Usa unstable_mockModule para bcryptjs también
 jest.unstable_mockModule("bcryptjs", () => ({
     compare: jest.fn((input, hash) => Promise.resolve(input === "correcta")),
 }));
