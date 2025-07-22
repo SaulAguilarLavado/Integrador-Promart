@@ -54,7 +54,7 @@ describe("POST /login", () => {
         const res = await request(app)
             .post("/login")
             .send({ correo: "existe@mail.com", contra: "correcta" });
-        expect(res.status).toBe(302); // Redirección
+        expect(res.status).toBe(302);
         expect(res.headers.location).toBe("/?login=exitoso");
     });
 });
