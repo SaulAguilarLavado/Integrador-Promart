@@ -6,7 +6,7 @@ export const renderCategoria = (nombreCategoria, vista) => async (req, res) => {
     const userId = req.session.userId || null;
     res.render(`productos/${vista}`, { productos, userName, userId });
 };
-// Exporta funciones específicas para cada categoría:
+
 export const renderAudio = renderCategoria("audio", "audio");
 export const renderCamarasDrones = renderCategoria("camaras-drones", "camaras-drones");
 export const renderCelulares = renderCategoria("celulares", "celulares");
