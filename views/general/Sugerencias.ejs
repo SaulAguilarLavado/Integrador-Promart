@@ -192,16 +192,11 @@
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
         <script>
-            // Detectar el parámetro "sugerencia" en la URL
             const params = new URLSearchParams(window.location.search);
             if (params.get("sugerencia") === "exitoso") {
-                // Mostrar una ventana emergente
                 alert("Sugerencia enviada correctamente. ¡Gracias por tu aporte!");
-                // Eliminar el parámetro de la URL sin recargar la página
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
-        
-            
         </script>
     </body>
 </html>  
