@@ -14,7 +14,6 @@ beforeAll(async () => {
     const { renderAudio, renderCamarasDrones } = await import("../controller/productosController.js");
     app = express();
 
-    // Mockea req.session para todos los requests
     app.use((req, res, next) => {
         req.session = { userId: 1, userName: "TestUser" };
         next();
