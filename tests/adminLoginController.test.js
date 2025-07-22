@@ -1,6 +1,5 @@
 import { jest } from '@jest/globals';
 
-// Mockea el DAO
 jest.unstable_mockModule("../dao/adminDao.js", () => ({
     buscarAdminPorCredenciales: jest.fn((correo, contra) => {
         if (correo === "admin@mail.com" && contra === "admin123") {
@@ -25,8 +24,7 @@ beforeAll(async () => {
     app.get("/admin/login", renderAdminLogin);
     app.post("/admin/login", procesarAdminLogin);
     app.get("/admin/logout", adminLogout);
-
-    // Mock render para capturar el renderizado
+    
     app.response.render = function (view, options) {
         this.status(200).json({ view, ...options });
     };
