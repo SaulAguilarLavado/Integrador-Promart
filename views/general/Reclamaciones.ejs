@@ -186,10 +186,8 @@
         <script src="/Js/signUp.js"></script>
         <script src="/Js/showLogin.js"></script>
         <script>
-            // Detectar el parámetro "reclamaciones" en la URL
             const params = new URLSearchParams(window.location.search);
             if (params.get("reclamaciones") === "exitoso") {
-                // Mostrar una ventana emergente
                 alert("Reclamación enviada correctamente. ¡Gracias por tu aporte!");
             }
 
