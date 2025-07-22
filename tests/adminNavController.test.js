@@ -1,6 +1,5 @@
 import { jest } from '@jest/globals';
 
-// Mockea los DAOs y services usados en el controller
 jest.unstable_mockModule("../DAO/categoriasDAO.js", () => ({
     default: {
         obtenerTodas: jest.fn(() => Promise.resolve([{ id: 1, nombre_categoria: "audio" }])),
@@ -40,13 +39,11 @@ beforeAll(async () => {
     } = await import("../controller/adminNavController.js");
 
     app = express();
-
-    // Mock render para capturar el renderizado
+    
     app.response.render = function (view, options) {
         this.status(200).json({ view, ...options });
     };
 
-    // Rutas para testear los renders
     app.get("/admin/dashboard", renderDashboard);
     app.get("/admin/productos", renderAdminProductos);
     app.get("/admin/usuarios", renderAdminUsuarios);
