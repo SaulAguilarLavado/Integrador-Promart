@@ -1,12 +1,10 @@
 import bcrypt from "bcryptjs";
 import userService from "../service/userService.js";
 
-// Función simple para validar formato de correo
 function validarCorreo(correo) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
 }
 
-// Función simple para validar fortaleza mínima de contraseña
 function validarPassword(contra) {
     return typeof contra === "string" && contra.length >= 6;
 }
@@ -27,7 +25,6 @@ export const registrar = async (req, res) => {
     }
 
     try {
-        // Verificar si el correo ya está registrado
         const usuarioExistente = await userService.buscarUsuarioPorCorreo(correo);
         if (usuarioExistente) {
             return res.status(409).send("El correo ya está registrado");
